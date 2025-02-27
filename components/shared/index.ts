@@ -10,3 +10,4 @@ export { RangeSlider } from "./range-slider";
 export { ProductsGroupList } from "./products-group-list";
 export { ProductCard } from "./product-card";
 export { SearchInput } from "./search-input";
+export { PizzaImage } from "./pizza-image";

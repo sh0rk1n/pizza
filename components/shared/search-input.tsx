@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
 import { cn } from "@/lib/utils";
 import { Product } from "@prisma/client";
 import { Search } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { useClickAway, useDebounce } from "react-use";
 import { Api } from "./services/api-client";
 
