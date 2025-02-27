@@ -1,15 +1,25 @@
+"use client";
+
 import React from "react";
 import { Title } from "./title";
 import { FilterCheckbox } from "./filter-checkbox";
 import { Input } from "../ui";
 import { RangeSlider } from "./range-slider";
 import { CheckboxFiltersGroup } from "./checkbox-filters-group";
+import { useIngredients } from "./hooks/use-ingredients";
 
 interface Props {
   className?: string;
 }
 
 export const Filters: React.FC<Props> = ({ className }) => {
+  const { ingredients, loading } = useIngredients();
+
+  const items = ingredients.map((item) => ({
+    value: String(item.id),
+    text: item.name,
+  }));
+
   return (
     <div className={className}>
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
@@ -33,33 +43,12 @@ export const Filters: React.FC<Props> = ({ className }) => {
       </div>
 
       <CheckboxFiltersGroup
-        title="Ингридиенты"
+        title="Ингредиенты"
         className="mt-5"
         limit={6}
-        defaultItems={[
-          { text: "СЫР", value: "1" },
-          { text: "ОГУРЕЦ", value: "2" },
-          { text: "В", value: "3" },
-          { text: "Г", value: "4" },
-          { text: "ДЛ", value: "5" },
-          { text: "К", value: "1" },
-          { text: "А", value: "2" },
-          { text: "В", value: "3" },
-          { text: "Г", value: "4" },
-          { text: "ДЛ", value: "5" },
-        ]}
-        items={[
-          { text: "СЫР", value: "1" },
-          { text: "ОГУРЕЦ", value: "2" },
-          { text: "В", value: "3" },
-          { text: "Г", value: "4" },
-          { text: "ДЛ", value: "5" },
-          { text: "К", value: "1" },
-          { text: "А", value: "2" },
-          { text: "В", value: "3" },
-          { text: "Г", value: "4" },
-          { text: "ДЛ", value: "5" },
-        ]}
+        defaultItems={items.slice(0, 6)}
+        items={items}
+        loading={loading}
       />
     </div>
   );
